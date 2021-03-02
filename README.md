@@ -1,6 +1,6 @@
 # emoji-test-regex-pattern [![emoji-test-regex-pattern on npm](https://img.shields.io/npm/v/emoji-test-regex-pattern)](https://www.npmjs.com/package/emoji-test-regex-pattern)
 
-_emoji-test-regex-pattern_ offers Java- and JavaScript-compatible regular expression patterns to match all emoji symbols and sequences listed in the `emoji-data.txt` file provided as part of [Unicode® Technical Standard #51](https://www.unicode.org/reports/tr51/).
+_emoji-test-regex-pattern_ offers Java- and JavaScript-compatible regular expression patterns to match all emoji symbols and sequences listed in the `emoji-test.txt` file provided as part of [Unicode® Technical Standard #51](https://www.unicode.org/reports/tr51/).
 
 These patterns can then be embedded into source code as part of projects such as [emoji-regex](https://github.com/mathiasbynens/emoji-regex).
 
