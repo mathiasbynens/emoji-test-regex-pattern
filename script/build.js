@@ -7,10 +7,15 @@ const getSequences = require('./get-sequences.js');
 const generateIndex = require('./generate-index.js');
 
 const writeFile = (fileName, contents) => {
-  // Since the output is guaranteed to be ASCII-safe, its `.length`
-  // accurately reflects the number of bytes in the file.
   const fileSize = contents.length;
-  console.log(`${fileName}\t${fileSize} bytes`);
+  // Since except for `index.txt` the output is guaranteed to be
+  // ASCII-safe, the `.length` accurately reflects the number of bytes
+  // in the file.
+  if (fileName.endsWith('index.txt')) {
+    console.log(`${fileName}`);
+  } else {
+    console.log(`${fileName}\t${fileSize} bytes`);
+  }
   fs.writeFileSync(fileName, contents);
 };
 
