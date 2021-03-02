@@ -4,6 +4,7 @@ const Trie = require('regexgen').Trie;
 
 const emojiDependencyMap = require('./emoji-dependency-map.js');
 const getSequences = require('./get-sequences.js');
+const generateIndex = require('./generate-index.js');
 
 const writeFile = (fileName, contents) => {
   // Since the output is guaranteed to be ASCII-safe, its `.length`
@@ -14,6 +15,7 @@ const writeFile = (fileName, contents) => {
 };
 
 const latestOutput = {
+  index: '',
   java: '',
   javascript: '',
 };
@@ -26,6 +28,13 @@ for (const [version, packageName] of emojiDependencyMap) {
   const sequences = getSequences(packageName);
   const trie = new Trie();
   trie.addAll(sequences);
+
+  {
+    const sorted = [...sequences].sort();
+    const index = generateIndex(sorted);
+    latestOutput.index = index;
+    writeFile(`./dist/emoji-${version}/index.txt`, index);
+  }
 
   {
     const pattern = trie.toString();
@@ -47,5 +56,7 @@ for (const [version, packageName] of emojiDependencyMap) {
   }
 
 }
+
+writeFile(`./dist/latest/index.txt`, latestOutput.index);
 writeFile(`./dist/latest/java.txt`, latestOutput.java);
 writeFile(`./dist/latest/javascript.txt`, latestOutput.javascript);
