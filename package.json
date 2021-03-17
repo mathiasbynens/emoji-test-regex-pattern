@@ -22,7 +22,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "node script/build.js"
+    "build": "node script/build.js",
+    "test": "node test/test.js"
   },
   "devDependencies": {
     "regexgen": "github:mathiasbynens/regexgen#no-minimize",
