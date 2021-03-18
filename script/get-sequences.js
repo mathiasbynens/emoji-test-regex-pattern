@@ -2,10 +2,12 @@ const getSequences = (packageName) => {
   const sequences = require(`${packageName}/Sequence_Property/Emoji_Test/index.js`);
   sequences.sort((a, b) => {
     // Longest strings first.
-    if ([...a].length > [...b].length) {
+    const aLength = [...a].length;
+    const bLength = [...b].length;
+    if (aLength > bLength) {
       return -1;
     }
-    if ([...a].length < [...b].length) {
+    if (aLength < bLength) {
       return 1;
     }
     // Lengths are equal; sort lexicographically from a-z.
