@@ -9,6 +9,9 @@ This repository contains a script that generates this regular expression pattern
 Note that although Unicode Emoji UTS#51 follows the versioning system used by the Unicode Standard, [the version numbers can be different](https://www.unicode.org/reports/tr51/#EmojiVersions). For example, when Unicode 13.0 was released, so was Emoji 13.0. But later, Emoji 13.1 was published while the Unicode version number remained at 13.0. Therefore, we use the Emoji version as specified in UTS#51 (and not the version of the Unicode Standard itself) to version the different patterns:
 
 ```
+dist/emoji-13.0/index.txt
+dist/emoji-13.0/java.txt
+dist/emoji-13.0/javascript.txt
 dist/emoji-13.1/index.txt
 dist/emoji-13.1/java.txt
 dist/emoji-13.1/javascript.txt
