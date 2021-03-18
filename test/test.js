@@ -1,5 +1,5 @@
-// Verify the latest JS pattern matches every emoji sequence in its
-// entirety.
+// For every Emoji version, verify that the generated JS pattern matches
+// every emoji sequence in its entirety.
 
 const assert = require('assert');
 const fs = require('fs');
