@@ -4,27 +4,30 @@
 const assert = require('assert');
 const fs = require('fs');
 
-const getLatestSequences = () => {
+const getSequences = require('../script/get-sequences.js');
+
+const getPackageIdsToCheck = () => {
   const dependencyMap = require('../script/emoji-dependency-map.js');
-  const getSequences = require('../script/get-sequences.js');
-  let latest = '';
+  const pkgIds = [];
   for (const pkgId of dependencyMap.values()) {
-    if (pkgId > latest) {
-      latest = pkgId;
-    }
+    pkgIds.push(pkgId);
   }
-  const sequences = getSequences(latest);
-  return sequences;
+  return pkgIds;
 };
 
-const pattern = fs.readFileSync('./dist/latest/javascript.txt')
-  .toString()
-  .trim();
-const re = new RegExp(pattern);
-console.log(re)
+const checkPackage = (pkgId) => {
+  console.log(`Checking ${pkgId}…`);
+  const path = `./dist/${pkgId.replace('unicode-', '')}/javascript.txt`;
+  const pattern = fs.readFileSync(path).toString().trim();
+  const re = new RegExp(pattern);
+  const sequences = getSequences(pkgId);
+  for (const string of sequences) {
+    const actual = string.match(re)[0];
+    assert(string === actual);
+  }
+};
 
-const sequences = getLatestSequences();
-for (const string of sequences) {
-  const actual = string.match(re)[0];
-  assert(string === actual);
+const pkgIds = getPackageIdsToCheck();
+for (const pkgId of pkgIds) {
+  checkPackage(pkgId);
 }
