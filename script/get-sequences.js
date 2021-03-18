@@ -1,5 +1,7 @@
 const getSequences = (packageName) => {
   const sequences = require(`${packageName}/Sequence_Property/Emoji_Test/index.js`);
+  // TODO: Remove sorting logic once the upstream bug is addressed.
+  // https://github.com/devongovett/regexgen/issues/31
   sequences.sort((a, b) => {
     // Longest strings first.
     const aLength = [...a].length;
