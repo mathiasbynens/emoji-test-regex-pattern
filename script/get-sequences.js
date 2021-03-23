@@ -1,5 +1,17 @@
+// Additional emoji sequences that we want to include in the regular
+// expression pattern, even if they’re not yet in emoji-test.txt.
+// TODO: Remove this special-casing once these sequences land upstream.
+const EXTRA_SEQUENCES = [
+  '\u{1F91D}\u{1F3FB}', // handshake: light skin
+  '\u{1F91D}\u{1F3FC}', // handshake: medium-light skin
+  '\u{1F91D}\u{1F3FD}', // handshake: medium skin
+  '\u{1F91D}\u{1F3FE}', // handshake: medium-dark skin
+  '\u{1F91D}\u{1F3FF}', // handshake: dark skin
+];
+
 const getSequences = (packageName) => {
-  const sequences = require(`${packageName}/Sequence_Property/Emoji_Test/index.js`);
+  const Emoji_Test = require(`${packageName}/Sequence_Property/Emoji_Test/index.js`);
+  const sequences = [...Emoji_Test, ...EXTRA_SEQUENCES];
   // TODO: Remove sorting logic once the upstream bug is addressed.
   // https://github.com/devongovett/regexgen/issues/31
   sequences.sort((a, b) => {
