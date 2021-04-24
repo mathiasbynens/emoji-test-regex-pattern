@@ -2,6 +2,7 @@
 // expression pattern, even if they’re not yet in emoji-test.txt.
 // TODO: Remove this special-casing once these sequences land upstream.
 const EXTRA_SEQUENCES = [
+  '\u2615\uFE0F', // hot beverage, as entered via iOS emoji picker
   '\u{1F91D}\u{1F3FB}', // handshake: light skin
   '\u{1F91D}\u{1F3FC}', // handshake: medium-light skin
   '\u{1F91D}\u{1F3FD}', // handshake: medium skin
