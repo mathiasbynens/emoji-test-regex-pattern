@@ -3,11 +3,18 @@
 // TODO: Remove this special-casing once these sequences land upstream.
 const EXTRA_SEQUENCES = [
   '\u2615\uFE0F', // hot beverage, as entered via iOS emoji picker
+
   '\u{1F91D}\u{1F3FB}', // handshake: light skin
   '\u{1F91D}\u{1F3FC}', // handshake: medium-light skin
   '\u{1F91D}\u{1F3FD}', // handshake: medium skin
   '\u{1F91D}\u{1F3FE}', // handshake: medium-dark skin
   '\u{1F91D}\u{1F3FF}', // handshake: dark skin
+
+  '\u{1F93C}\u{1F3FB}', // wrestlers: light skin
+  '\u{1F93C}\u{1F3FC}', // wrestlers: medium-light skin
+  '\u{1F93C}\u{1F3FD}', // wrestlers: medium skin
+  '\u{1F93C}\u{1F3FE}', // wrestlers: medium-dark skin
+  '\u{1F93C}\u{1F3FF}', // wrestlers: dark skin
 ];
 
 const getSequences = (packageName) => {
