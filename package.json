@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "regexgen": "^1.3.0",
-    "unicode-emoji-13.0": "npm:@unicode/unicode-13.0.0@1.1.0",
+    "unicode-emoji-13.0": "npm:@unicode/unicode-13.0.0@1.0.5",
     "unicode-emoji-13.1": "npm:@unicode/unicode-13.0.0@^1.1.0"
   }
 }
