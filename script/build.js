@@ -5,6 +5,7 @@ const Trie = require('regexgen').Trie;
 const emojiDependencyMap = require('./emoji-dependency-map.js');
 const getSequences = require('./get-sequences.js');
 const generateIndex = require('./generate-index.js');
+const generateCssUnicodeRange = require('./generate-css-unicode-range.js');
 
 const writeFile = (fileName, contents) => {
   const fileSize = contents.length;
@@ -21,6 +22,7 @@ const writeFile = (fileName, contents) => {
 
 const latestOutput = {
   index: '',
+  css: '',
   java: '',
   javascript: '',
 };
@@ -42,10 +44,10 @@ for (const [version, packageName] of emojiDependencyMap) {
   }
 
   {
-    const pattern = trie.toString();
-    const output = `${pattern}\n`;
-    latestOutput.javascript = output;
-    writeFile(`./dist/emoji-${version}/javascript.txt`, output);
+    const cssUnicodeRange = generateCssUnicodeRange(sequences);
+    const output = `${cssUnicodeRange}\n`;
+    latestOutput.css = output;
+    writeFile(`./dist/emoji-${version}/css.txt`, output);
   }
 
   {
@@ -60,8 +62,16 @@ for (const [version, packageName] of emojiDependencyMap) {
     writeFile(`./dist/emoji-${version}/java.txt`, output);
   }
 
+  {
+    const pattern = trie.toString();
+    const output = `${pattern}\n`;
+    latestOutput.javascript = output;
+    writeFile(`./dist/emoji-${version}/javascript.txt`, output);
+  }
+
 }
 
 writeFile(`./dist/latest/index.txt`, latestOutput.index);
+writeFile(`./dist/latest/css.txt`, latestOutput.css);
 writeFile(`./dist/latest/java.txt`, latestOutput.java);
 writeFile(`./dist/latest/javascript.txt`, latestOutput.javascript);
