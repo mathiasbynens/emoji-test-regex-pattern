@@ -25,6 +25,7 @@ const latestOutput = {
   css: '',
   java: '',
   javascript: '',
+  javascriptU: '',
 };
 for (const [version, packageName] of emojiDependencyMap) {
   const directory = `./dist/emoji-${version}`;
@@ -69,9 +70,17 @@ for (const [version, packageName] of emojiDependencyMap) {
     writeFile(`./dist/emoji-${version}/javascript.txt`, output);
   }
 
+  {
+    const pattern = trie.toString('u');
+    const output = `${pattern}\n`;
+    latestOutput.javascriptU = output;
+    writeFile(`./dist/emoji-${version}/javascript-u.txt`, output);
+  }
+
 }
 
 writeFile(`./dist/latest/index.txt`, latestOutput.index);
 writeFile(`./dist/latest/css.txt`, latestOutput.css);
 writeFile(`./dist/latest/java.txt`, latestOutput.java);
 writeFile(`./dist/latest/javascript.txt`, latestOutput.javascript);
+writeFile(`./dist/latest/javascript-u.txt`, latestOutput.javascriptU);

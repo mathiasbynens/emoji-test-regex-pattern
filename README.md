@@ -12,6 +12,7 @@ _emoji-test-regex-pattern_ also includes other useful assets! For every supporte
 - `css.txt` — a CSS `unicode-range` value matching each code point in any of the emoji sequences in `index.txt`.
 - `java.txt` — a Java-compatible regular expression pattern matching all the emoji in `index.txt`.
 - `javascript.txt` — a JavaScript-compatible regular expression pattern matching all the emoji in `index.txt`, for use in regular expressions without the `u` flag.
+- `javascript-u.txt` — a JavaScript-compatible regular expression pattern matching all the emoji in `index.txt`, for use in regular expressions with the `u` flag.
 
 Note that although Unicode Emoji UTS#51 follows the versioning system used by the Unicode Standard, [the version numbers can be different](https://www.unicode.org/reports/tr51/#EmojiVersions). For example, when Unicode 13.0 was released, so was Emoji 13.0. But later, Emoji 13.1 was published while the Unicode version number remained at 13.0. Therefore, we use the Emoji version as specified in UTS#51 (and not the version of the Unicode Standard itself) to version the different patterns:
 
@@ -20,21 +21,25 @@ dist/emoji-13.0/index.txt
 dist/emoji-13.0/css.txt
 dist/emoji-13.0/java.txt
 dist/emoji-13.0/javascript.txt
+dist/emoji-13.0/javascript-u.txt
 
 dist/emoji-13.1/index.txt
 dist/emoji-13.1/css.txt
 dist/emoji-13.1/java.txt
 dist/emoji-13.1/javascript.txt
+dist/emoji-13.1/javascript-u.txt
 
 dist/emoji-14.0/index.txt
 dist/emoji-14.0/css.txt
 dist/emoji-14.0/java.txt
 dist/emoji-14.0/javascript.txt
+dist/emoji-14.0/javascript-u.txt
 
 dist/latest/index.txt
 dist/latest/css.txt
 dist/latest/java.txt
 dist/latest/javascript.txt
+dist/latest/javascript-u.txt
 ```
 
 See [the `dist/` folder](https://github.com/mathiasbynens/emoji-test-regex-pattern/tree/main/dist).
