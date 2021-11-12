@@ -22,6 +22,7 @@ const writeFile = (fileName, contents) => {
 
 const latestOutput = {
   index: '',
+  cppRe2: '',
   css: '',
   java: '',
   javascript: '',
@@ -59,7 +60,8 @@ for (const [version, packageName] of emojiDependencyMap) {
         .replace(/\\u\{/g, '\\x{')
         .replace(/\\u([a-fA-F0-9]{4})/g, '\\x{$1}')
     }\n`;
-    latestOutput.java = output;
+    latestOutput.cppRe2 = output;
+    writeFile(`./dist/emoji-${version}/cpp-re2.txt`, output);
     writeFile(`./dist/emoji-${version}/java.txt`, output);
   }
 
@@ -80,6 +82,7 @@ for (const [version, packageName] of emojiDependencyMap) {
 }
 
 writeFile(`./dist/latest/index.txt`, latestOutput.index);
+writeFile(`./dist/latest/cpp-re2.txt`, latestOutput.cppRe2);
 writeFile(`./dist/latest/css.txt`, latestOutput.css);
 writeFile(`./dist/latest/java.txt`, latestOutput.java);
 writeFile(`./dist/latest/javascript.txt`, latestOutput.javascript);
