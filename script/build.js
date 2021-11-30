@@ -62,6 +62,7 @@ for (const [version, packageName] of emojiDependencyMap) {
     }\n`;
     latestOutput.cppRe2 = output;
     writeFile(`./dist/emoji-${version}/cpp-re2.txt`, output);
+    latestOutput.java = output;
     writeFile(`./dist/emoji-${version}/java.txt`, output);
   }
 
