@@ -29,21 +29,17 @@ const checkPackage = (pkgId) => {
     const pattern = fs.readFileSync(path).toString().trim();
     const re = new RegExp(pattern);
 
-    const sequences = getSequences(pkgId);
-    for (const string of sequences) {
-      const actual = string.match(re)[0];
-      assert(string === actual);
-    }
-  }
+    const pathU = `${prefix}/javascript-u.txt`;
+    const patternU = fs.readFileSync(pathU).toString().trim();
+    const reU = new RegExp(patternU, 'u');
 
-  {
-    const path = `${prefix}/javascript-u.txt`;
-    const pattern = fs.readFileSync(path).toString().trim();
-    const re = new RegExp(pattern, 'u');
     const sequences = getSequences(pkgId);
     for (const string of sequences) {
       const actual = string.match(re)[0];
       assert(string === actual);
+
+      const actualU = string.match(reU)[0];
+      assert(string === actualU);
     }
   }
 
