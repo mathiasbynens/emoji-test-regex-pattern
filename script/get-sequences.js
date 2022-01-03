@@ -1,7 +1,11 @@
 // Additional emoji sequences that we want to include in the regular
-// expression pattern, even if they’re not yet in emoji-test.txt.
-// TODO: Remove this special-casing once these sequences land upstream.
+// expression pattern, even if they’re not (yet) in emoji-test.txt.
+// Note that sequences must never be removed from this list, not even
+// once they’re added upstream, to ensure that generated output for
+// older Emoji versions still includes them.
 const EXTRA_SEQUENCES = [
+  // The following handshake emoji sequences were officially added in
+  // Emoji 14.0.
   '\u{1F91D}\u{1F3FB}', // handshake: light skin
   '\u{1F91D}\u{1F3FC}', // handshake: medium-light skin
   '\u{1F91D}\u{1F3FD}', // handshake: medium skin
