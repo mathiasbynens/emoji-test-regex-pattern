@@ -39,6 +39,12 @@ for (const [version, packageName] of emojiDependencyMap) {
   trie.addAll(sequences);
 
   {
+    const sequencesText = sequences.join("\n");
+    latestOutput.sequencesText = sequencesText;
+    writeFile(`./dist/emoji-${version}/sequences.txt`, sequencesText);
+  }
+
+  {
     const sorted = [...sequences].sort();
     const index = generateIndex(sorted);
     latestOutput.index = index;
@@ -88,3 +94,4 @@ writeFile(`./dist/latest/css.txt`, latestOutput.css);
 writeFile(`./dist/latest/java.txt`, latestOutput.java);
 writeFile(`./dist/latest/javascript.txt`, latestOutput.javascript);
 writeFile(`./dist/latest/javascript-u.txt`, latestOutput.javascriptU);
+writeFile(`./dist/latest/sequences.txt`, latestOutput.sequencesText);

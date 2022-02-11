@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "build": "node script/build.js",
+    "rebuild": "script/rebuild.sh",
     "test": "node test/test.js"
   },
   "devDependencies": {

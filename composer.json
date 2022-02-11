@@ -1,0 +1,5 @@
+{
+    "require": {
+        "s9e/regexp-builder-command": "*"
+    }
+}
