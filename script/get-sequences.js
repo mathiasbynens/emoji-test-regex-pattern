@@ -45,6 +45,7 @@ const EXTRA_SEQUENCES = [
   '\u26F3\uFE0F', // flag in hole
   '\u26F5\uFE0F', // sailboat
   '\u26FA\uFE0F', // tent
+  '\u2757\uFE0F', // exclamation
   '\u2B1B\uFE0F', // black large square
   '\u2B1C\uFE0F', // white large square
   '\u2B55\uFE0F', // heavy large circle
