@@ -22,11 +22,8 @@ const writeFile = (fileName, contents) => {
 
 const latestOutput = {
   index: '',
-  cppRe2: '',
   css: '',
-  java: '',
-  javascript: '',
-  javascriptU: '',
+  sequences: '',
 };
 for (const [version, packageName] of emojiDependencyMap) {
   const directory = `./dist/emoji-${version}`;
@@ -40,7 +37,7 @@ for (const [version, packageName] of emojiDependencyMap) {
 
   {
     const sequencesText = sequences.join('\n');
-    latestOutput.sequencesText = sequencesText;
+    latestOutput.sequences = sequencesText;
     writeFile(`./dist/emoji-${version}/sequences.txt`, sequencesText);
   }
 
@@ -58,40 +55,8 @@ for (const [version, packageName] of emojiDependencyMap) {
     writeFile(`./dist/emoji-${version}/css.txt`, output);
   }
 
-  {
-    const pattern = trie.toString('u');
-    // TODO: Use replaceAll once it lands in Node.js.
-    const output = `${
-      pattern
-        .replace(/\\u\{/g, '\\x{')
-        .replace(/\\u([a-fA-F0-9]{4})/g, '\\x{$1}')
-    }\n`;
-    latestOutput.cppRe2 = output;
-    writeFile(`./dist/emoji-${version}/cpp-re2.txt`, output);
-    latestOutput.java = output;
-    writeFile(`./dist/emoji-${version}/java.txt`, output);
-  }
-
-  {
-    const pattern = trie.toString();
-    const output = `${pattern}\n`;
-    latestOutput.javascript = output;
-    writeFile(`./dist/emoji-${version}/javascript.txt`, output);
-  }
-
-  {
-    const pattern = trie.toString('u');
-    const output = `${pattern}\n`;
-    latestOutput.javascriptU = output;
-    writeFile(`./dist/emoji-${version}/javascript-u.txt`, output);
-  }
-
 }
 
 writeFile(`./dist/latest/index.txt`, latestOutput.index);
-writeFile(`./dist/latest/cpp-re2.txt`, latestOutput.cppRe2);
 writeFile(`./dist/latest/css.txt`, latestOutput.css);
-writeFile(`./dist/latest/java.txt`, latestOutput.java);
-writeFile(`./dist/latest/javascript.txt`, latestOutput.javascript);
-writeFile(`./dist/latest/javascript-u.txt`, latestOutput.javascriptU);
-writeFile(`./dist/latest/sequences.txt`, latestOutput.sequencesText);
+writeFile(`./dist/latest/sequences.txt`, latestOutput.sequences);
