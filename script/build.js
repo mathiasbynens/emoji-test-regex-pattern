@@ -39,7 +39,7 @@ for (const [version, packageName] of emojiDependencyMap) {
   trie.addAll(sequences);
 
   {
-    const sequencesText = sequences.join("\n");
+    const sequencesText = sequences.join('\n');
     latestOutput.sequencesText = sequencesText;
     writeFile(`./dist/emoji-${version}/sequences.txt`, sequencesText);
   }
