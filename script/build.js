@@ -5,6 +5,7 @@ const execFile = util.promisify(require('child_process').execFile);
 const emojiDependencyMap = require('./emoji-dependency-map.js');
 const getSequences = require('./get-sequences.js');
 const generateIndex = require('./generate-index.js');
+const generateIndexStrings = require('./generate-index-strings.js');
 const generateCssUnicodeRange = require('./generate-css-unicode-range.js');
 
 const writeFile = async (fileName, contents) => {
@@ -22,7 +23,7 @@ const generateFiles = async ({ version, packageName }) => {
     const index = generateIndex(sorted);
     await writeFile(`./dist/emoji-${version}/index.txt`, index);
 
-    const indexStrings = sorted.join('\n');
+    const indexStrings = generateIndexStrings(sorted);
     await writeFile(`./dist/emoji-${version}/index-strings.txt`, indexStrings);
   }
 
@@ -32,42 +33,34 @@ const generateFiles = async ({ version, packageName }) => {
     await writeFile(`./dist/emoji-${version}/css.txt`, output);
   }
 
-  {
-    await execFile('./build-regexp', [
-      '--infile', `./dist/emoji-${version}/index-strings.txt`,
-      '--preset', 'java',
-      '--outfile', `./dist/emoji-${version}/java.txt`,
-      '--overwrite',
-    ]);
-  }
+  await execFile('./build-regexp', [
+    '--infile', `./dist/emoji-${version}/index-strings.txt`,
+    '--preset', 'java',
+    '--outfile', `./dist/emoji-${version}/java.txt`,
+    '--overwrite',
+  ]);
 
-  {
-    await execFile('./build-regexp', [
-      '--infile', `./dist/emoji-${version}/index-strings.txt`,
-      '--preset', 'javascript',
-      '--outfile', `./dist/emoji-${version}/javascript.txt`,
-      '--overwrite',
-    ]);
-  }
+  await execFile('./build-regexp', [
+    '--infile', `./dist/emoji-${version}/index-strings.txt`,
+    '--preset', 'javascript',
+    '--outfile', `./dist/emoji-${version}/javascript.txt`,
+    '--overwrite',
+  ]);
 
-  {
-    await execFile('./build-regexp', [
-      '--infile', `./dist/emoji-${version}/index-strings.txt`,
-      '--preset', 'javascript',
-      '--flags', 'u',
-      '--outfile', `./dist/emoji-${version}/javascript-u.txt`,
-      '--overwrite',
-    ]);
-  }
+  await execFile('./build-regexp', [
+    '--infile', `./dist/emoji-${version}/index-strings.txt`,
+    '--preset', 'javascript',
+    '--flags', 'u',
+    '--outfile', `./dist/emoji-${version}/javascript-u.txt`,
+    '--overwrite',
+  ]);
 
-  {
-    await execFile('./build-regexp', [
-      '--infile', `./dist/emoji-${version}/index-strings.txt`,
-      '--preset', 're2',
-      '--outfile', `./dist/emoji-${version}/cpp-re2.txt`,
-      '--overwrite',
-    ]);
-  }
+  await execFile('./build-regexp', [
+    '--infile', `./dist/emoji-${version}/index-strings.txt`,
+    '--preset', 're2',
+    '--outfile', `./dist/emoji-${version}/cpp-re2.txt`,
+    '--overwrite',
+  ]);
 };
 
 const main = async () => {
