@@ -20,32 +20,18 @@ Note that although Unicode Emoji UTS#51 follows the versioning system used by th
 
 ```
 dist/emoji-13.0/index.txt
+dist/emoji-13.0/index-strings.txt
 dist/emoji-13.0/cpp-re2.txt
 dist/emoji-13.0/css.txt
 dist/emoji-13.0/java.txt
 dist/emoji-13.0/javascript.txt
 dist/emoji-13.0/javascript-u.txt
 
-dist/emoji-13.1/index.txt
-dist/emoji-13.1/cpp-re2.txt
-dist/emoji-13.1/css.txt
-dist/emoji-13.1/java.txt
-dist/emoji-13.1/javascript.txt
-dist/emoji-13.1/javascript-u.txt
+dist/emoji-13.1/*.txt
 
-dist/emoji-14.0/index.txt
-dist/emoji-14.0/cpp-re2.txt
-dist/emoji-14.0/css.txt
-dist/emoji-14.0/java.txt
-dist/emoji-14.0/javascript.txt
-dist/emoji-14.0/javascript-u.txt
+dist/emoji-14.0/*.txt
 
-dist/latest/index.txt
-dist/latest/cpp-re2.txt
-dist/latest/css.txt
-dist/latest/java.txt
-dist/latest/javascript.txt
-dist/latest/javascript-u.txt
+dist/latest/*.txt
 ```
 
 See [the `dist/` folder](https://github.com/mathiasbynens/emoji-test-regex-pattern/tree/main/dist).
