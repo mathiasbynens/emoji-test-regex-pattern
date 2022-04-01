@@ -23,7 +23,7 @@ const writeFile = (fileName, contents) => {
 const latestOutput = {
   index: '',
   css: '',
-  sequences: '',
+  strings: '',
 };
 for (const [version, packageName] of emojiDependencyMap) {
   const directory = `./dist/emoji-${version}`;
@@ -36,9 +36,9 @@ for (const [version, packageName] of emojiDependencyMap) {
   trie.addAll(sequences);
 
   {
-    const sequencesText = sequences.join('\n');
-    latestOutput.sequences = sequencesText;
-    writeFile(`./dist/emoji-${version}/sequences.txt`, sequencesText);
+    const strings = sequences.join('\n');
+    latestOutput.strings = strings;
+    writeFile(`./dist/emoji-${version}/strings.txt`, strings);
   }
 
   {
@@ -59,4 +59,4 @@ for (const [version, packageName] of emojiDependencyMap) {
 
 writeFile(`./dist/latest/index.txt`, latestOutput.index);
 writeFile(`./dist/latest/css.txt`, latestOutput.css);
-writeFile(`./dist/latest/sequences.txt`, latestOutput.sequences);
+writeFile(`./dist/latest/strings.txt`, latestOutput.strings);
