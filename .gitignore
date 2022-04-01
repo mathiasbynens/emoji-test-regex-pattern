@@ -2,6 +2,9 @@
 node_modules
 package-lock.json
 
+# Other installed dependencies
+build-regexp
+
 # npm pack output
 *.tgz
 

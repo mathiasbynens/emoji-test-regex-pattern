@@ -8,7 +8,8 @@ This repository contains a script that generates this regular expression pattern
 
 _emoji-test-regex-pattern_ also includes other useful assets! For every supported version of the Emoji standard, _emoji-test-regex-pattern_ generates the following files:
 
-- `index.txt` — a list of all the emoji matched by the other files in that folder.
+- `index.txt` — a list of all the emoji matched by the other files in that folder alongside their code points in U+XXXX notation.
+- `index-strings.txt` — a list of all the emoji matched by the other files in that folder.
 - `cpp-re2.txt` — a regular expression pattern matching all the emoji in `index.txt` compatible with [the C++ RE2 library](https://github.com/google/re2).
 - `css.txt` — a CSS `unicode-range` value matching each code point in any of the emoji sequences in `index.txt`.
 - `java.txt` — a Java-compatible regular expression pattern matching all the emoji in `index.txt`.
@@ -19,32 +20,18 @@ Note that although Unicode Emoji UTS#51 follows the versioning system used by th
 
 ```
 dist/emoji-13.0/index.txt
+dist/emoji-13.0/index-strings.txt
 dist/emoji-13.0/cpp-re2.txt
 dist/emoji-13.0/css.txt
 dist/emoji-13.0/java.txt
 dist/emoji-13.0/javascript.txt
 dist/emoji-13.0/javascript-u.txt
 
-dist/emoji-13.1/index.txt
-dist/emoji-13.1/cpp-re2.txt
-dist/emoji-13.1/css.txt
-dist/emoji-13.1/java.txt
-dist/emoji-13.1/javascript.txt
-dist/emoji-13.1/javascript-u.txt
+dist/emoji-13.1/*.txt
 
-dist/emoji-14.0/index.txt
-dist/emoji-14.0/cpp-re2.txt
-dist/emoji-14.0/css.txt
-dist/emoji-14.0/java.txt
-dist/emoji-14.0/javascript.txt
-dist/emoji-14.0/javascript-u.txt
+dist/emoji-14.0/*.txt
 
-dist/latest/index.txt
-dist/latest/cpp-re2.txt
-dist/latest/css.txt
-dist/latest/java.txt
-dist/latest/javascript.txt
-dist/latest/javascript-u.txt
+dist/latest/*.txt
 ```
 
 See [the `dist/` folder](https://github.com/mathiasbynens/emoji-test-regex-pattern/tree/main/dist).
