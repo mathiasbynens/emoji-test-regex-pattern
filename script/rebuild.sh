@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for infile in dist/*/sequences.txt; do
+for infile in dist/*/strings.txt; do
 	dir="${infile%/*}";
 	cmd="vendor/bin/build-regexp --infile $infile --overwrite";
 
