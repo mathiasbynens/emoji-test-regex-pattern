@@ -8,7 +8,8 @@ This repository contains a script that generates this regular expression pattern
 
 _emoji-test-regex-pattern_ also includes other useful assets! For every supported version of the Emoji standard, _emoji-test-regex-pattern_ generates the following files:
 
-- `index.txt` — a list of all the emoji matched by the other files in that folder.
+- `index.txt` — a list of all the emoji matched by the other files in that folder alongside their code points in U+XXXX notation.
+- `index-strings.txt` — a list of all the emoji matched by the other files in that folder.
 - `cpp-re2.txt` — a regular expression pattern matching all the emoji in `index.txt` compatible with [the C++ RE2 library](https://github.com/google/re2).
 - `css.txt` — a CSS `unicode-range` value matching each code point in any of the emoji sequences in `index.txt`.
 - `java.txt` — a Java-compatible regular expression pattern matching all the emoji in `index.txt`.

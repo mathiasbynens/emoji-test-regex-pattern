@@ -1,62 +1,82 @@
-const fs = require('fs');
-
-const Trie = require('regexgen').Trie;
+const fs = require('fs/promises');
+const util = require('util');
+const execFile = util.promisify(require('child_process').execFile);
 
 const emojiDependencyMap = require('./emoji-dependency-map.js');
 const getSequences = require('./get-sequences.js');
 const generateIndex = require('./generate-index.js');
 const generateCssUnicodeRange = require('./generate-css-unicode-range.js');
 
-const writeFile = (fileName, contents) => {
-  const fileSize = contents.length;
-  // Since except for `index.txt` the output is guaranteed to be
-  // ASCII-safe, the `.length` accurately reflects the number of bytes
-  // in the file.
-  if (fileName.endsWith('index.txt')) {
-    console.log(`${fileName}`);
-  } else {
-    console.log(`${fileName}\t${fileSize} bytes`);
-  }
-  fs.writeFileSync(fileName, contents);
+const writeFile = async (fileName, contents) => {
+  await fs.writeFile(fileName, contents);
 };
 
-const latestOutput = {
-  index: '',
-  css: '',
-  strings: '',
-};
-for (const [version, packageName] of emojiDependencyMap) {
+const generateFiles = async ({ version, packageName }) => {
   const directory = `./dist/emoji-${version}`;
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory);
-  }
+  await fs.mkdir(directory, { recursive: true });
 
   const sequences = getSequences(packageName);
-  const trie = new Trie();
-  trie.addAll(sequences);
-
-  {
-    const strings = sequences.join('\n');
-    latestOutput.strings = strings;
-    writeFile(`./dist/emoji-${version}/strings.txt`, strings);
-  }
 
   {
     const sorted = [...sequences].sort();
     const index = generateIndex(sorted);
-    latestOutput.index = index;
-    writeFile(`./dist/emoji-${version}/index.txt`, index);
+    await writeFile(`./dist/emoji-${version}/index.txt`, index);
+
+    const indexStrings = sorted.join('\n');
+    await writeFile(`./dist/emoji-${version}/index-strings.txt`, indexStrings);
   }
 
   {
     const cssUnicodeRange = generateCssUnicodeRange(sequences);
     const output = `${cssUnicodeRange}\n`;
-    latestOutput.css = output;
-    writeFile(`./dist/emoji-${version}/css.txt`, output);
+    await writeFile(`./dist/emoji-${version}/css.txt`, output);
   }
 
-}
+  {
+    await execFile('./build-regexp', [
+      '--infile', `./dist/emoji-${version}/index-strings.txt`,
+      '--preset', 'java',
+      '--outfile', `./dist/emoji-${version}/java.txt`,
+      '--overwrite',
+    ]);
+  }
 
-writeFile(`./dist/latest/index.txt`, latestOutput.index);
-writeFile(`./dist/latest/css.txt`, latestOutput.css);
-writeFile(`./dist/latest/strings.txt`, latestOutput.strings);
+  {
+    await execFile('./build-regexp', [
+      '--infile', `./dist/emoji-${version}/index-strings.txt`,
+      '--preset', 'javascript',
+      '--outfile', `./dist/emoji-${version}/javascript.txt`,
+      '--overwrite',
+    ]);
+  }
+
+  {
+    await execFile('./build-regexp', [
+      '--infile', `./dist/emoji-${version}/index-strings.txt`,
+      '--preset', 'javascript',
+      '--flags', 'u',
+      '--outfile', `./dist/emoji-${version}/javascript-u.txt`,
+      '--overwrite',
+    ]);
+  }
+
+  {
+    await execFile('./build-regexp', [
+      '--infile', `./dist/emoji-${version}/index-strings.txt`,
+      '--preset', 're2',
+      '--outfile', `./dist/emoji-${version}/cpp-re2.txt`,
+      '--overwrite',
+    ]);
+  }
+};
+
+const main = async () => {
+  let latestVersion = '';
+  for (const [version, packageName] of emojiDependencyMap) {
+    await generateFiles({ version, packageName });
+    latestVersion = version;
+  }
+  await fs.cp(`./dist/emoji-${latestVersion}/`, `./dist/latest/`, { recursive: true });
+};
+
+main();
