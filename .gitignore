@@ -2,6 +2,9 @@
 node_modules
 package-lock.json
 
+# Other installed dependencies
+build-regexp.phar
+
 # npm pack output
 *.tgz
 
@@ -16,7 +19,3 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
-
-# Composer packages
-composer.lock
-vendor
