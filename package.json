@@ -22,8 +22,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "node script/build.js",
-    "rebuild": "script/rebuild.sh",
+    "prebuild": "if [ ! -f build-regexp.phar ]; then curl --silent --remote-name https://github.com/s9e/RegexpBuilderCommand/releases/latest/download/build-regexp.phar; chmod +x build-regexp.phar; fi; ./build-regexp.phar --version",
+    "build": "node script/build.js && script/rebuild.sh",
     "test": "node test/test.js"
   },
   "devDependencies": {
