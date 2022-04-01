@@ -2,7 +2,7 @@
 
 for infile in dist/*/strings.txt; do
 	dir="${infile%/*}";
-	cmd="vendor/bin/build-regexp --infile $infile --overwrite";
+	cmd="./build-regexp --infile $infile --overwrite";
 
 	$cmd --preset java       --outfile "$dir/java.txt";
 	$cmd --preset javascript --outfile "$dir/javascript.txt";
