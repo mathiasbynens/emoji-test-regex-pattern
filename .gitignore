@@ -3,7 +3,7 @@ node_modules
 package-lock.json
 
 # Other installed dependencies
-build-regexp.phar
+build-regexp
 
 # npm pack output
 *.tgz
