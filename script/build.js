@@ -37,6 +37,7 @@ const generateFiles = async ({ version, packageName }) => {
     '--infile', `./dist/emoji-${version}/index-strings.txt`,
     '--preset', 'java',
     '--outfile', `./dist/emoji-${version}/java.txt`,
+    '--standalone',
     '--overwrite',
   ]);
 
@@ -44,6 +45,7 @@ const generateFiles = async ({ version, packageName }) => {
     '--infile', `./dist/emoji-${version}/index-strings.txt`,
     '--preset', 'javascript',
     '--outfile', `./dist/emoji-${version}/javascript.txt`,
+    '--standalone',
     '--overwrite',
   ]);
 
@@ -52,6 +54,7 @@ const generateFiles = async ({ version, packageName }) => {
     '--preset', 'javascript',
     '--flags', 'u',
     '--outfile', `./dist/emoji-${version}/javascript-u.txt`,
+    '--standalone',
     '--overwrite',
   ]);
 
@@ -59,6 +62,7 @@ const generateFiles = async ({ version, packageName }) => {
     '--infile', `./dist/emoji-${version}/index-strings.txt`,
     '--preset', 're2',
     '--outfile', `./dist/emoji-${version}/cpp-re2.txt`,
+    '--standalone',
     '--overwrite',
   ]);
 };
