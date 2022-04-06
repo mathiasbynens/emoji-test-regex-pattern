@@ -22,7 +22,7 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "if [ ! -f build-regexp ]; then curl --silent --location --output build-regexp https://github.com/s9e/RegexpBuilderCommand/releases/latest/download/build-regexp.phar; chmod +x build-regexp; fi; ./build-regexp --version",
+    "prebuild": "if [ ! -f build-regexp ]; then curl --silent --location --output build-regexp https://github.com/s9e/RegexpBuilderCommand/releases/download/0.5.0/build-regexp.phar; chmod +x build-regexp; fi; ./build-regexp --version",
     "build": "node script/build.js; for v in dist/*; do echo; wc --bytes $v/*.txt; done",
     "test": "node test/test.js"
   },
