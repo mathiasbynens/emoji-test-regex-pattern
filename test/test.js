@@ -43,6 +43,11 @@ const checkPackage = (pkgId) => {
     }
   }
 
+  // TODO: Change this assertion into a proper test once the `v` flag
+  // is supported in V8 & Node.js.
+  // https://bugs.chromium.org/p/v8/issues/detail?id=11935
+  assertNotEmpty(`${prefix}/javascript-v.txt`);
+
   assertNotEmpty(`${prefix}/index.txt`);
   assertNotEmpty(`${prefix}/cpp-re2.txt`);
   assertNotEmpty(`${prefix}/css.txt`);

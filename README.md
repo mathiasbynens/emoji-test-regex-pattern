@@ -15,6 +15,7 @@ _emoji-test-regex-pattern_ also includes other useful assets! For every supporte
 - `java.txt` — a Java-compatible regular expression pattern matching all the emoji in `index.txt`.
 - `javascript.txt` — a JavaScript-compatible regular expression pattern matching all the emoji in `index.txt`, for use in regular expressions without the `u` flag.
 - `javascript-u.txt` — a JavaScript-compatible regular expression pattern matching all the emoji in `index.txt`, for use in regular expressions with the `u` flag.
+- `javascript-v.txt` — a JavaScript-compatible regular expression pattern matching all the emoji in `index.txt`, for use in regular expressions with [the `v` flag](https://github.com/tc39/proposal-regexp-set-notation).
 
 Note that although Unicode Emoji UTS#51 follows the versioning system used by the Unicode Standard, [the version numbers can be different](https://www.unicode.org/reports/tr51/#EmojiVersions). For example, when Unicode 13.0 was released, so was Emoji 13.0. But later, Emoji 13.1 was published while the Unicode version number remained at 13.0. Therefore, we use the Emoji version as specified in UTS#51 (and not the version of the Unicode Standard itself) to version the different patterns:
 

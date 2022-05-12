@@ -1,3 +1,6 @@
+# Temporary build artifacts
+tmp
+
 # Installed npm modules
 node_modules
 package-lock.json
