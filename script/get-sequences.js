@@ -52,26 +52,24 @@ const EXTRA_SEQUENCES = [
   '\u{1F004}\uFE0F', // mahjong tile red dragon
 ];
 
+const compare = (a, b) => {
+  // TODO: Remove sorting logic once the upstream bug is addressed.
+  // https://github.com/devongovett/regexgen/issues/31
+  // Longest strings first.
+  const aLength = [...a].length;
+  const bLength = [...b].length;
+  if (aLength > bLength) return -1;
+  if (aLength < bLength) return 1;
+  // Lengths are equal; sort lexicographically from a-z.
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+};
+
 const getSequences = (packageName) => {
   const Emoji_Test = require(`${packageName}/Sequence_Property/Emoji_Test/index.js`);
   const sequences = [...Emoji_Test, ...EXTRA_SEQUENCES];
-  // TODO: Remove sorting logic once the upstream bug is addressed.
-  // https://github.com/devongovett/regexgen/issues/31
-  sequences.sort((a, b) => {
-    // Longest strings first.
-    const aLength = [...a].length;
-    const bLength = [...b].length;
-    if (aLength > bLength) {
-      return -1;
-    }
-    if (aLength < bLength) {
-      return 1;
-    }
-    // Lengths are equal; sort lexicographically from a-z.
-    if (a < b) return -1;
-    if (a > b) return 1;
-    return 0;
-  });
+  sequences.sort(compare);
   return sequences;
 };
 
