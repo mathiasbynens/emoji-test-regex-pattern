@@ -83,7 +83,7 @@ const generateFiles = async ({ version, packageName }) => {
 
     const contents = await fs.readFile(nonRgiPatternPath, 'utf8');
     const output = `\\p{RGI_Emoji}|${contents}`;
-    writeFile(`./dist/emoji-${version}/javascript-v.txt`, output);
+    await writeFile(`./dist/emoji-${version}/javascript-v.txt`, output);
   }
 
   await execFile('./build-regexp', [
