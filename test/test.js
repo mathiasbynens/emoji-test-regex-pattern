@@ -5,6 +5,7 @@ const assert = require('assert');
 const fs = require('fs');
 
 const getSequences = require('../script/get-sequences.js');
+const LCD_RGI_Emoji = require('../script/get-lcd-rgi-emoji.js');
 
 const getPackageIdsToCheck = () => {
   const dependencyMap = require('../script/emoji-dependency-map.js');
@@ -34,6 +35,15 @@ const checkPackage = (pkgId) => {
     const reU = new RegExp(patternU, 'u');
 
     const sequences = getSequences(pkgId);
+    const sequenceSet = new Set(sequences);
+
+    // Verify each `LCD_RGI_Emoji` is included in each version of
+    // emoji-test; otherwise, the `javascript-v` output would become
+    // incorrect.
+    for (const string of LCD_RGI_Emoji) {
+      assert(sequenceSet.has(string), string);
+    }
+
     for (const string of sequences) {
       const actual = string.match(re)[0];
       assert(string === actual);

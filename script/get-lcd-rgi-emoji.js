@@ -4,6 +4,6 @@
 // the `javascript-v` output, and use this versioned snapshot to
 // figure out which newer/other emoji strings we need to hardcode
 // into the pattern.
-const RGI_Emoji = require(`unicode-emoji-14.0/Sequence_Property/RGI_Emoji/index.js`);
+const RGI_Emoji = require(`unicode-emoji-13.0/Sequence_Property/RGI_Emoji/index.js`);
 const set = new Set(RGI_Emoji);
 module.exports = set;
