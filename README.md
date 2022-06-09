@@ -45,8 +45,8 @@ See [the `dist/` folder](https://github.com/mathiasbynens/emoji-test-regex-patte
 1. Update the Unicode data dependency in `package.json` by running the following commands:
 
     ```sh
-    # Example: Emoji 15.0 (UTS#51) is released, and its data is included in the @unicode/unicode-15.0.0 package.
-    npm install unicode-emoji-15.0@npm:@unicode/unicode-15.0.0@latest --save-dev
+    # Example: Emoji 16.0 (UTS#51) is released, and its data is included in the @unicode/unicode-16.0.0 package.
+    npm install unicode-emoji-16.0@npm:@unicode/unicode-16.0.0@latest --save-dev
     ````
 
 1. Generate the new output:

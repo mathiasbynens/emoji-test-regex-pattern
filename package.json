@@ -30,6 +30,7 @@
     "regenerate": "^1.4.2",
     "unicode-emoji-13.0": "npm:@unicode/unicode-13.0.0@1.0.5",
     "unicode-emoji-13.1": "npm:@unicode/unicode-13.0.0@^1.2.1",
-    "unicode-emoji-14.0": "npm:@unicode/unicode-14.0.0@^1.2.1"
+    "unicode-emoji-14.0": "npm:@unicode/unicode-14.0.0@^1.2.1",
+    "unicode-emoji-15.0": "npm:@unicode/unicode-15.0.0@^1.2.2"
   }
 }
