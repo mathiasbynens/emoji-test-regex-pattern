@@ -33,6 +33,8 @@ dist/emoji-13.1/*.txt
 
 dist/emoji-14.0/*.txt
 
+dist/emoji-15.0/*.txt
+
 dist/latest/*.txt
 ```
 
