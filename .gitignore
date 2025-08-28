@@ -7,6 +7,10 @@ package-lock.json
 
 # Other installed dependencies
 build-regexp
+vendor
+autoload.php
+composer.json
+composer.lock
 
 # npm pack output
 *.tgz

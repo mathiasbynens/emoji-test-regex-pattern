@@ -39,6 +39,8 @@ dist/emoji-15.1/*.txt
 
 dist/emoji-16.0/*.txt
 
+dist/emoji-17.0/*.txt
+
 dist/latest/*.txt
 ```
 
@@ -50,16 +52,16 @@ See [the `dist/` folder](https://github.com/mathiasbynens/emoji-test-regex-patte
 
 1. Update the Unicode data dependency in `package.json` by running the following commands:
 
-    ```sh
-    # Example: Emoji 17.0 (UTS#51) is released, and its data is included in the @unicode/unicode-17.0.0 package.
-    npm install unicode-emoji-17.0@npm:@unicode/unicode-17.0.0@latest --save-dev
-    ````
+   ```sh
+   # Example: Emoji 18.0 (UTS#51) is released, and its data is included in the @unicode/unicode-18.0.0 package.
+   npm install unicode-emoji-18.0@npm:@unicode/unicode-18.0.0@latest --save-dev
+   ```
 
 1. Generate the new output:
 
-    ```sh
-    npm run build
-    ```
+   ```sh
+   npm run build
+   ```
 
 1. Verify that `dist` contains the new file.
 
@@ -67,27 +69,27 @@ See [the `dist/` folder](https://github.com/mathiasbynens/emoji-test-regex-patte
 
 1. On the `main` branch, bump the version number in `package.json`:
 
-    ```sh
-    npm version patch -m 'Release v%s'
-    ```
+   ```sh
+   npm version patch -m 'Release v%s'
+   ```
 
-    Instead of `patch`, use `minor` or `major` [as needed](https://semver.org/).
+   Instead of `patch`, use `minor` or `major` [as needed](https://semver.org/).
 
-    Note that this produces a Git commit + tag.
+   Note that this produces a Git commit + tag.
 
 1. Push the release commit and tag:
 
-    ```sh
-    git push && git push --tags
-    ```
+   ```sh
+   git push && git push --tags
+   ```
 
-    Our CI then automatically publishes the new release to npm.
+   Our CI then automatically publishes the new release to npm.
 
 ## Author
 
-| [![twitter/mathias](https://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias "Follow @mathias on Twitter") |
-|---|
-| [Mathias Bynens](https://mathiasbynens.be/) |
+| [![twitter/mathias](https://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias 'Follow @mathias on Twitter') |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Mathias Bynens](https://mathiasbynens.be/)                                                                                                       |
 
 ## License
 
