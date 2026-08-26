@@ -3,4 +3,4 @@ const generateIndexStrings = (strings) => {
   return output;
 };
 
-module.exports = generateIndexStrings;
+export default generateIndexStrings;

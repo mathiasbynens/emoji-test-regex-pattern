@@ -1,40 +1,40 @@
 // For every Emoji version, verify that the generated JS pattern matches
 // every emoji sequence in its entirety.
 
-const assert = require('assert');
-const fs = require('fs');
+import assert from 'node:assert';
+import fs from 'node:fs/promises';
 
-const getSequences = require('../script/get-sequences.js');
-const LCD_RGI_Emoji = require('../script/get-lcd-rgi-emoji.js');
+import emojiDependencyMap from '../script/emoji-dependency-map.mjs';
+import getSequences from '../script/get-sequences.mjs';
+import LCD_RGI_Emoji from '../script/get-lcd-rgi-emoji.mjs';
 
 const getPackageIdsToCheck = () => {
-  const dependencyMap = require('../script/emoji-dependency-map.js');
   const pkgIds = [];
-  for (const pkgId of dependencyMap.values()) {
+  for (const pkgId of emojiDependencyMap.values()) {
     pkgIds.push(pkgId);
   }
   return pkgIds;
 };
 
-const assertNotEmpty = (path) => {
-  const contents = fs.readFileSync(path).toString().trim();
+const assertNotEmpty = async (path) => {
+  const contents = (await fs.readFile(path, 'utf8')).trim();
   assert(contents.length > 0);
 };
 
-const checkPackage = (pkgId) => {
+const checkPackage = async (pkgId) => {
   console.log(`Checking ${pkgId}…`);
   const prefix = `./dist/${pkgId.replace('unicode-', '')}`;
 
   {
     const path = `${prefix}/javascript.txt`;
-    const pattern = fs.readFileSync(path).toString().trim();
+    const pattern = (await fs.readFile(path, 'utf8')).trim();
     const re = new RegExp(pattern);
 
     const pathU = `${prefix}/javascript-u.txt`;
-    const patternU = fs.readFileSync(pathU).toString().trim();
+    const patternU = (await fs.readFile(pathU, 'utf8')).trim();
     const reU = new RegExp(patternU, 'u');
 
-    const sequences = getSequences(pkgId);
+    const sequences = await getSequences(pkgId);
     const sequenceSet = new Set(sequences);
 
     // Verify each `LCD_RGI_Emoji` is included in each version of
@@ -56,15 +56,15 @@ const checkPackage = (pkgId) => {
   // TODO: Change this assertion into a proper test once the `v` flag
   // is supported in V8 & Node.js.
   // https://bugs.chromium.org/p/v8/issues/detail?id=11935
-  assertNotEmpty(`${prefix}/javascript-v.txt`);
+  await assertNotEmpty(`${prefix}/javascript-v.txt`);
 
-  assertNotEmpty(`${prefix}/index.txt`);
-  assertNotEmpty(`${prefix}/cpp-re2.txt`);
-  assertNotEmpty(`${prefix}/css.txt`);
-  assertNotEmpty(`${prefix}/java.txt`);
+  await assertNotEmpty(`${prefix}/index.txt`);
+  await assertNotEmpty(`${prefix}/cpp-re2.txt`);
+  await assertNotEmpty(`${prefix}/css.txt`);
+  await assertNotEmpty(`${prefix}/java.txt`);
 };
 
 const pkgIds = getPackageIdsToCheck();
 for (const pkgId of pkgIds) {
-  checkPackage(pkgId);
+  await checkPackage(pkgId);
 }

@@ -19,4 +19,4 @@ const generateIndex = (strings) => {
   return output;
 };
 
-module.exports = generateIndex;
+export default generateIndex;
